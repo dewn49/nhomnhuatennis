@@ -14,7 +14,10 @@ class MatchController extends Controller {
   }
 
   Future<void> reloadListMatch() async {
-    final data = await Supabase.instance.client.from('nn_match').select('*');
+    final data = await Supabase.instance.client
+        .from('nn_match')
+        .select('*')
+        .order('id', ascending: false);
     listMatch.clear();
     print('----Reload----');
     for (var d in data) {

@@ -55,82 +55,132 @@ class _MatchCardState extends NyState<MatchCard> {
           color: Color.fromARGB(255, 223, 255, 93),
         ), //BoxDecoration
 
-        child: Row(
-          children: <Widget>[
-            Row(
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Column(
-                  children: [
-                    //
-                    Text(mapMemberId[
-                        int.tryParse(widget.private.getNhom()!['player1'])]!),
-                    Text(mapMemberId[
-                        int.tryParse(widget.private.getNhom()!['player2'])]!),
-                  ],
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                Container(
-                  // color: Color.fromARGB(255, 255, 247, 93),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    // color: Color.fromARGB(255, 214, 245, 91),
-                  ),
-                  child: Text(
-                    widget.private.getNhom()!['point'].toString(),
-                    style: GoogleFonts.workSans(
-                      textStyle: TextStyle(
-                        fontSize: 24,
-                        color: Colors.black,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 20,
-              child: Text(
-                '|',
-                textAlign: TextAlign.center,
-              ),
-            ), //SizedBox
+        child: Column(
+          children: [
+            Text('ID: ' + widget.private.id.toString()),
+            Container(
+              alignment: Alignment.center,
+              color: Color.fromARGB(255, 255, 255, 255),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    // crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Column(
+                        children: [
+                          //
+                          Text(
+                            mapMemberId[int.tryParse(
+                                widget.private.getNhom()!['player1'])]!,
+                            style: GoogleFonts.workSans(
+                              textStyle: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
 
-            Row(
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  // color: Color.fromARGB(255, 255, 247, 93),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    // color: Color.fromARGB(255, 214, 245, 91),
-                  ),
-                  child: Text(
-                    widget.private.getNhua()!['point'].toString(),
-                    style: GoogleFonts.workSans(
-                      textStyle: TextStyle(
-                        fontSize: 24,
-                        color: Colors.black,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w400,
+                          Text(
+                            mapMemberId[int.tryParse(
+                                widget.private.getNhom()!['player2'])]!,
+                            style: GoogleFonts.workSans(
+                              textStyle: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
+                      SizedBox(
+                        width: 25,
+                      ),
+                      Container(
+                        // color: Color.fromARGB(255, 255, 247, 93),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          // color: Color.fromARGB(255, 214, 245, 91),
+                        ),
+                        child: Text(
+                          widget.private.getNhom()!['point'].toString(),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 24,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                Column(children: [
-                  Text(mapMemberId[
-                      int.tryParse(widget.private.getNhua()!['player1'])]!),
-                  Text(mapMemberId[
-                      int.tryParse(widget.private.getNhua()!['player2'])]!),
-                ]),
-              ],
+                  SizedBox(
+                    width: 20,
+                    child: Text(
+                      '|',
+                      textAlign: TextAlign.center,
+                    ),
+                  ), //SizedBox
+                  Row(
+                    // crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        // color: Color.fromARGB(255, 255, 247, 93),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          // color: Color.fromARGB(255, 214, 245, 91),
+                        ),
+                        child: Text(
+                          widget.private.getNhua()!['point'].toString(),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 24,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 25,
+                      ),
+                      Column(children: [
+                        Text(
+                          mapMemberId[int.tryParse(
+                              widget.private.getNhua()!['player1'])]!,
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          mapMemberId[int.tryParse(
+                              widget.private.getNhua()!['player2'])]!,
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ]),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ], //<Widget>[]
           mainAxisAlignment: MainAxisAlignment.center,

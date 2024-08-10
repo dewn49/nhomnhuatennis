@@ -153,11 +153,27 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                           controller: nhom1,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhom, 1),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                         NyTextField(
                           controller: nhom2,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhom, 2),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                         Container(
                           alignment: Alignment.center,
@@ -228,11 +244,27 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                           controller: nhua1,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhua, 1),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                         NyTextField(
                           controller: nhua2,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhua, 2),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                         Container(
                           alignment: Alignment.center,
@@ -283,7 +315,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
               ), //Row
               Container(
                   width: 380,
-                  height: 100,
+                  // height: 100,
                   // decoration: BoxDecoration(
                   //     borderRadius: BorderRadius.circular(10),
                   //     color: Colors.blue),
@@ -291,19 +323,52 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                     children: [
                       MaterialButton(
                         onPressed: onSaveMatch,
-                        child: Text('Lưu (Save)'),
+                        child: Text(
+                          'Lưu (Save)',
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
                       MaterialButton(
                         onPressed: onFinishMatch,
-                        child: Text('Kết thúc (End game)'),
+                        child: Text(
+                          'Kết thúc (End game)',
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
                       MaterialButton(
                         onPressed: onDelMatch,
-                        child: Text('Xóa (Delete)'),
+                        child: Text(
+                          'Xóa (Delete)',
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ) //BoxDecoration
                   ), //Container
+              SizedBox(
+                height: 100,
+              ),
             ], //<widget>[]
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,

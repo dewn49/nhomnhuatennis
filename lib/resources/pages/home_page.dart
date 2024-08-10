@@ -1,6 +1,7 @@
 import 'package:flutter_app/app/controllers/globals.dart';
 import 'package:flutter_app/app/models/posts.dart';
 import 'package:flutter_app/resources/pages/dashboard_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:nylo_framework/theme/helper/ny_theme.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,17 @@ class _HomePageState extends NyState<HomePage> {
             children: <Widget>[
               MaterialButton(
                 onPressed: _login,
-                child: Text('Login'),
+                child: Text(
+                  'Login',
+                  style: GoogleFonts.workSans(
+                    textStyle: TextStyle(
+                      fontSize: 24,
+                      color: Colors.black,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
               // MaterialButton(
               //   onPressed: _logout,
@@ -234,7 +245,10 @@ class _HomePageState extends NyState<HomePage> {
     await Auth.set(user);
 
     // get member list
-    final data = await Supabase.instance.client.from('nn_member').select('*');
+    final data = await Supabase.instance.client
+        .from('nn_member')
+        .select('*')
+        .order('id', ascending: true);
     for (var d in data) {
       print(d);
       Member member = Member.fromJson(d);
