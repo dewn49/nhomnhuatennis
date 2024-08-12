@@ -32,7 +32,7 @@ class MatchViewController extends Controller {
       if (response.isNotEmpty) {
         print('ADD++Response:  + $response');
         nnMatch.id = int.parse(response[0]['id'].toString());
-        listMatch.add(nnMatch);
+        // listMatch.add(NNMatch.fromJson(nnMatch.toJson()));
         return nnMatch;
       } else {
         print('ADD++Unexpected response: $response');
@@ -104,7 +104,7 @@ class MatchViewController extends Controller {
       final response =
           await Supabase.instance.client.from('nn_match').delete().eq('id', id);
       print('delete ok');
-      StateAction.refreshPage('/match');
+      // StateAction.refreshPage('/match');
       // context?.showSnackBar('Successfully updated profile!');
     } on PostgrestException catch (error) {
       print('Loi delete by on PostgrestException');

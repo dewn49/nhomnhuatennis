@@ -13,6 +13,7 @@ import '/resources/widgets/safearea_widget.dart';
 import '/bootstrap/helpers.dart';
 import '/app/controllers/home_controller.dart';
 import '/resources/pages/profile_page.dart';
+import 'package:flutter_app/app/controllers/globals.dart';
 
 class HomePage extends NyStatefulWidget<HomeController> {
   static const path = '/home';
@@ -257,6 +258,11 @@ class _HomePageState extends NyState<HomePage> {
     }
     print(mapMemberId);
     print(mapMemberId[1]);
+
+    //4. init practice datetime default
+    DateTime today = DateTime.now();
+    nnUpdateDateTimePlay(today.year, today.month, today.day, today.hour,
+        today.minute, today.second);
 
     // setState(() {});
     routeTo(DashboardPage.path);

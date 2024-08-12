@@ -38,79 +38,30 @@ class _MatchPageState extends NyState<MatchPage> {
     await controller.reloadListMatch();
   }
 
-  Future<void> addMatch() async {
-    final bool? shouldRefresh = await showModalBottomSheet<bool>(
-        enableDrag: false,
-        context: context,
-        isScrollControlled: true,
-        builder: (BuildContext context) {
-          return Form(
-            child: MatchViewPage(NNMatch()
-                // height: 300.0,
-                // width: 300.0,
-                // child: Text( 'Thêm trận đấu', )
-                ),
-          );
-        });
-    // if (shouldRefresh == true) {
-    //   listMatch.clear();
-    //   await controller.reloadListMatch();
-    // }
-    if (shouldRefresh == true)
-      setState(() {
-        print('------');
-        listMatch.forEach((m) {
-          print(m.toJson());
-        });
-      });
-// from the controller, refresh the state of the pull to refresh widget
-
-    // controller.refreshPage();
+  refresh(bool isAdd) {
+    setState(() {
+      if (isAdd) controller.reloadListMatch();
+    });
   }
 
   Future<void> updateMatch(NNMatch nnMatch) async {
+    // ignore: unused_local_variable
     final bool? shouldRefresh = await showModalBottomSheet<bool>(
         enableDrag: false,
         context: context,
         isScrollControlled: true,
         builder: (BuildContext context) {
           return Form(
-            child: MatchViewPage(nnMatch
-                // height: 300.0,
-                // width: 300.0,
-                // child: Text( 'Thêm trận đấu', )
-                ),
+            child: MatchViewPage(nnMatch, refresh),
           );
         });
-    // if (shouldRefresh == true) {
-    //   controller.listMatch.clear();
-    //   await controller.reloadListMatch();
-    // }
-
-    if (shouldRefresh == true)
-      setState(() {
-        // controller.reloadListMatch();
-
-        // This call to setState tells the Flutter framework that something has
-        // changed in this State, which causes it to rerun the build method below
-        // so that the display can reflect the updated values.
-      });
-    // print('------');
-    // listMatch.forEach((m) {
-    //   print(m.toJson());
-    // });
   }
-
-  DateTime selectedDate = DateTime.now();
-
-  // static const List<String> names = [
-  //   "Q.Anh, Đại An",
-  //   "Anh Kiệt, M.Đức",
-  //   "Tannzz Wan",
-  // ];
 
   @override
   Widget view(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+
     return Scaffold(
       // appBar: AppBar(title: const Text("Match")),
       body: SafeArea(
@@ -132,12 +83,38 @@ class _MatchPageState extends NyState<MatchPage> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(
-                width: 20.0,
+                width: 10.0,
               ),
               TextButton(
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    side: BorderSide(
+                      color: colorScheme.primary,
+                      width: 1,
+                    ),
+                  ),
+                ),
                 onPressed: () => _selectDate(context), // Refer step 3
                 child: Text(
-                  'Đổi ngày',
+                  'Đổi',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                width: 10.0,
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: colorScheme.onError,
+                  backgroundColor: Color.fromARGB(255, 205, 255, 112),
+                ),
+                onPressed: () {
+                  setState(() {});
+                }, // Refer step 3
+                child: Text(
+                  'Refresh',
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
@@ -171,20 +148,10 @@ class _MatchPageState extends NyState<MatchPage> {
                     onTap: () {
                       updateMatch(data);
                     },
-                    /*Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: */
-                    //   Column(
-                    // children: <Widget>[
-                    //   MatchCard(private: data),
-                    // ], //<Widget>[]
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: CrossAxisAlignment.center,
                   ); //Container
                 },
                 data: () async {
                   return listMatch;
-                  //await api<JsonPlaceHolderApiService>((request) => request.getPosts());
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return Divider();
@@ -197,7 +164,6 @@ class _MatchPageState extends NyState<MatchPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           updateMatch(NNMatch());
-          setState(() {});
         },
         tooltip: 'Thêm trận đấu',
         child: const Icon(Icons.add),
@@ -212,9 +178,14 @@ class _MatchPageState extends NyState<MatchPage> {
       firstDate: DateTime(2000),
       lastDate: DateTime(2025),
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate) {
+      nnUpdateDateTimePlay(picked.year, picked.month, picked.day, picked.hour,
+          picked.minute, picked.second);
+
       setState(() {
         selectedDate = picked;
+        controller.reloadListMatch();
       });
+    }
   }
 }

@@ -10,9 +10,10 @@ import 'package:flutter_app/app/controllers/globals.dart';
 class MatchViewPage extends NyStatefulWidget<MatchViewController> {
   static const path = '/match-view';
 
-  MatchViewPage(this.nnMatch, {super.key})
+  MatchViewPage(this.nnMatch, this.notifyParent, {super.key})
       : super(path, child: () => _MatchViewPageState());
   final NNMatch nnMatch;
+  final Function(bool) notifyParent;
 }
 
 class _MatchViewPageState extends NyState<MatchViewPage> {
@@ -151,6 +152,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                         ),
                         NyTextField(
                           controller: nhom1,
+                          enabled: false,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhom, 1),
                           style: GoogleFonts.workSans(
@@ -164,6 +166,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                         ),
                         NyTextField(
                           controller: nhom2,
+                          enabled: false,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhom, 2),
                           style: GoogleFonts.workSans(
@@ -242,6 +245,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                         ),
                         NyTextField(
                           controller: nhua1,
+                          enabled: false,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhua, 1),
                           style: GoogleFonts.workSans(
@@ -255,6 +259,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                         ),
                         NyTextField(
                           controller: nhua2,
+                          enabled: false,
                           dummyData:
                               getPlayerNameByOrder(widget.nnMatch.nhua, 2),
                           style: GoogleFonts.workSans(
@@ -297,15 +302,6 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                               });
                             },
                           ),
-                          // child: Text(
-                          //   '0',
-                          //   style: TextStyle(
-                          //     fontSize: 16,
-                          //     color: Color.fromARGB(255, 0, 0, 0),
-                          //     fontStyle: FontStyle.normal,
-                          //     fontWeight: FontWeight.w700,
-                          //   ),
-                          // )
                         ),
                       ],
                     ), //BoxDecoration
@@ -379,19 +375,21 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
     );
   }
 
-  void onSaveMatch() {
+  void onSaveMatch() async {
     if (widget.nnMatch.id == null) {
-      controller.addMatch(widget.nnMatch);
+      await controller.addMatch(widget.nnMatch);
       listMatch.forEach((m) {
         print(m.toJson());
       });
-      showToastSuccess(description: "Thêm trận đấu thành công");
       Navigator.of(context).pop(true);
-      // StateAction.refreshPage('/match');
+      showToastSuccess(
+          description: "Thêm trận đấu thành công. Bấm tiếp REFRESH");
+      widget.notifyParent(true);
     } else {
       controller.updateMatch(
           widget.nnMatch.id!, widget.nnMatch.nhom, widget.nnMatch.nhua, false);
       Navigator.of(context).pop(true);
+      widget.notifyParent(false);
     }
   }
 
@@ -400,15 +398,16 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
       controller.updateMatch(
           widget.nnMatch.id!, widget.nnMatch.nhom, widget.nnMatch.nhua, true);
     Navigator.of(context).pop(true);
+    widget.notifyParent(false);
   }
 
   void onDelMatch() {
     if (widget.nnMatch.id != null) {
       controller.deleteMatch(widget.nnMatch.id!);
+      listMatch.remove(widget.nnMatch);
     }
     Navigator.of(context).pop(true);
-    // StateAction.refreshPage('match_page');
-    listMatch.remove(widget.nnMatch);
+    widget.notifyParent(false);
   }
 
   void onSelectMemberButton(bool isNhom) {
