@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/controllers/globals.dart';
+import 'package:flutter_app/resources/widgets/create_member_widget.dart';
+import 'package:flutter_app/resources/widgets/member_view_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -16,6 +18,8 @@ class RankingPage extends NyStatefulWidget {
 }
 
 class _RankingPageState extends NyState<RankingPage> {
+  Member selectedMember = Member();
+
   @override
   init() async {}
 
@@ -43,7 +47,11 @@ class _RankingPageState extends NyState<RankingPage> {
                     width: 100,
                   ).localAsset(),
                 )),
-            onTap: () => _onRakingItemsTap(context),
+            onTap: () {
+              selectedMember.id = data.id;
+              selectedMember.name = data.name;
+              _onRakingItemsTap(context, data);
+            },
             title: Text(
               data.name ?? "",
               maxLines: 1,
@@ -79,12 +87,13 @@ class _RankingPageState extends NyState<RankingPage> {
     ));
   }
 
-  _onRakingItemsTap(BuildContext context) {
-    showAboutDialog(
-      context: context,
-      applicationName: getEnv('APP_NAME'),
-      applicationIcon: const Logo(),
-      applicationVersion: nyloVersion,
-    );
+  _onRakingItemsTap(BuildContext context, Member member) {
+    showUpdateMemberModal(context, member);
+    // showAboutDialog(
+    //   context: context,
+    //   applicationName: getEnv('APP_NAME'),
+    //   applicationIcon: const Logo(),
+    //   applicationVersion: nyloVersion,
+    // );
   }
 }
