@@ -44,6 +44,7 @@ class _DashboardPageState extends NyState<DashboardPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('NHÔM NHỰA TV'),
+        automaticallyImplyLeading: false,
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -56,15 +57,15 @@ class _DashboardPageState extends NyState<DashboardPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'BXH',
+            label: 'XẾP HẠNG',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Luyện tập',
+            label: 'LUYỆN TẬP',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Cấu hình',
+            label: 'CẤU HÌNH',
           ),
         ],
       ),
