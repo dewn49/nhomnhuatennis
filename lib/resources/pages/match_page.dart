@@ -46,6 +46,7 @@ class _MatchPageState extends NyState<MatchPage>
   _MatchPageState() {
     // widget.controller.state = 'match_page';
     stateName = 'match_page';
+    selectedDate = DateTime.now();
   }
 
   final List<Employee> employees = Employee.getEmployees;
@@ -93,7 +94,7 @@ class _MatchPageState extends NyState<MatchPage>
   Widget view(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
-
+    int countStat = 0;
     return Scaffold(
       // appBar: AppBar(title: const Text("Match")),
       body: SafeArea(
@@ -222,16 +223,108 @@ class _MatchPageState extends NyState<MatchPage>
                           },
                         ),
                         Center(
-                          child: TableView.builder(
-                            columnCount: 7,
-                            rowCount: nnMatchStat.length + 1,
-                            columnBuilder: buildTableSpanColumn,
-                            rowBuilder: buildTableSpanRow,
-                            cellBuilder:
-                                (BuildContext context, TableVicinity vicinity) {
-                              return TableViewCell(
-                                  child: Center(child: addText(vicinity)));
-                            },
+                          // child: Container(
+                          //   decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(10),
+                          //     color: Colors.blue,
+                          //   ),
+                          child: Column(
+                            children: [
+                              SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: DataTable(
+                                      columnSpacing: 15.0,
+                                      columns: <DataColumn>[
+                                        DataColumn(
+                                            label: Text(
+                                          "STT".toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                        DataColumn(
+                                            label: Text(
+                                          "Thành viên".toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                        DataColumn(
+                                            label: Text(
+                                          "THAG".toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                        DataColumn(
+                                            label: Text(
+                                          "HÒA".toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                        DataColumn(
+                                            label: Text(
+                                          "THUA".toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                        DataColumn(
+                                            label: Text(
+                                          "Games".toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                        DataColumn(
+                                            label: Text(
+                                          "ĐIỂM".toUpperCase(),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            backgroundColor: Color.fromARGB(
+                                                255, 0, 119, 255),
+                                            // fontSize: 20,
+                                          ),
+                                        )),
+                                      ],
+                                      rows: nnMatchStat.entries
+                                          .map<DataRow>((entry) {
+                                        countStat = countStat + 1;
+                                        return DataRow(
+                                          cells: [
+                                            DataCell(
+                                                Text(countStat.toString())),
+                                            DataCell(
+                                                Text(mapMemberId[entry.key]!)),
+                                            DataCell(Text(entry
+                                                .value[NN_STAT_WIN]
+                                                .toString())),
+                                            DataCell(Text(entry
+                                                .value[NN_STAT_TIE]
+                                                .toString())),
+                                            DataCell(Text(entry
+                                                .value[NN_STAT_LOS]
+                                                .toString())),
+                                            DataCell(Text(entry
+                                                .value[NN_STAT_DEU]
+                                                .toString())),
+                                            DataCell(Text(entry
+                                                .value[NN_STAT_POINT]
+                                                .toString()))
+                                          ],
+                                        );
+                                      }).toList()),
+                                  // child: TableView.builder(
+                                  //   columnCount: 7,
+                                  //   rowCount: nnMatchStat.length + 1,
+                                  //   columnBuilder: buildTableSpanColumn,
+                                  //   rowBuilder: buildTableSpanRow,
+                                  //   cellBuilder:
+                                  //       (BuildContext context, TableVicinity vicinity) {
+                                  //     return TableViewCell(
+                                  //         child: Center(child: addText(vicinity)));
+                                  //   },
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -391,3 +484,23 @@ class _MatchPageState extends NyState<MatchPage>
     }
   }
 }
+
+class Team {
+  int pos, p, w, d, l, gd, pts;
+  String name;
+  Team(
+      {required this.pos,
+      required this.name,
+      required this.p,
+      required this.w,
+      required this.d,
+      required this.l,
+      required this.gd,
+      required this.pts});
+}
+
+var teams = <Team>[
+  Team(pos: 1, name: "Basaksehir", p: 14, w: 9, d: 3, l: 2, gd: 13, pts: 30),
+  Team(pos: 2, name: "Kasimpasa", p: 14, w: 8, d: 2, l: 4, gd: 10, pts: 26),
+  Team(pos: 3, name: "Besiktas", p: 14, w: 7, d: 3, l: 4, gd: 8, pts: 24),
+];

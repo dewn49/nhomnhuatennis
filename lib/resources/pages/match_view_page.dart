@@ -28,6 +28,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
   boot() async {}
 
   TextEditingController nhom1 = TextEditingController();
+  String nhom1Str = 'Player1';
   TextEditingController nhom2 = TextEditingController();
   TextEditingController nhua1 = TextEditingController();
   TextEditingController nhua2 = TextEditingController();
@@ -104,16 +105,46 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
 
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            'Thông tin trận đấu',
-            style: TextStyle(
-              fontSize: 18,
-              color: Color.fromARGB(255, 255, 255, 0),
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w700,
+        centerTitle: true,
+        title: const Text(
+          'Thông tin trận đấu',
+          style: TextStyle(
+            fontSize: 18,
+            color: Color.fromARGB(255, 255, 255, 0),
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.save,
+              size: 32,
             ),
-          )),
+            tooltip: 'Lưu thông tin',
+            onPressed: onSaveMatch,
+            color: Colors.green.shade400,
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.stop,
+              size: 48,
+            ),
+            tooltip: 'Kết thúc trận đấu',
+            onPressed: onFinishMatch,
+            color: Colors.red.shade400,
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.delete,
+              size: 32,
+            ),
+            tooltip: 'Xóa trận đấu',
+            onPressed: onDelMatch,
+            color: Color.fromARGB(255, 8, 84, 146),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Container(
             child: Padding(
@@ -145,11 +176,25 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                         TextButton(
                           style: ButtonStyle(
                             foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.blue),
+                                WidgetStateProperty.all<Color>(Colors.blue),
                           ),
                           onPressed: onSelectMemberNhomButton,
                           child: Text('Select members'),
                         ),
+                        // TextButton(
+                        //   // style: ButtonStyle(
+                        //   //   foregroundColor:
+                        //   //       MaterialStateProperty.all<Color>(Colors.blue),
+                        //   // ),
+                        //   style: ButtonStyle(
+                        //     foregroundColor:
+                        //         WidgetStateProperty.all<Color>(Colors.blue),
+                        //     backgroundColor: WidgetStateProperty.all<Color>(
+                        //         const Color.fromARGB(255, 33, 243, 236)),
+                        //   ),
+                        //   onPressed: onSelectMemberNhomButton,
+                        //   child: Text(nhom1),
+                        // ),
                         NyTextField(
                           controller: nhom1,
                           enabled: false,
@@ -213,7 +258,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                     ),
                   ), //Container
                   SizedBox(
-                    width: 50,
+                    width: 10,
                   ), //SizedBox
                   Container(
                     width: 200,
@@ -310,58 +355,58 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
               ), //Row
               Container(
-                  width: 380,
-                  // height: 100,
-                  // decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(10),
-                  //     color: Colors.blue),
-                  child: Column(
-                    children: [
-                      MaterialButton(
-                        onPressed: onSaveMatch,
-                        child: Text(
-                          'Lưu (Save)',
-                          style: GoogleFonts.workSans(
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      MaterialButton(
-                        onPressed: onFinishMatch,
-                        child: Text(
-                          'Kết thúc (End game)',
-                          style: GoogleFonts.workSans(
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      MaterialButton(
-                        onPressed: onDelMatch,
-                        child: Text(
-                          'Xóa (Delete)',
-                          style: GoogleFonts.workSans(
-                            textStyle: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ) //BoxDecoration
-                  ), //Container
+                width: 380,
+                // height: 100,
+                // decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(10),
+                //     color: Colors.blue),
+                // child: Column(
+                //   children: [
+                //     MaterialButton(
+                //       onPressed: onSaveMatch,
+                //       child: Text(
+                //         'Lưu (Save)',
+                //         style: GoogleFonts.workSans(
+                //           textStyle: TextStyle(
+                //             fontSize: 20,
+                //             color: Colors.black,
+                //             fontStyle: FontStyle.normal,
+                //             fontWeight: FontWeight.w600,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     MaterialButton(
+                //       onPressed: onFinishMatch,
+                //       child: Text(
+                //         'Kết thúc (End game)',
+                //         style: GoogleFonts.workSans(
+                //           textStyle: TextStyle(
+                //             fontSize: 20,
+                //             color: Colors.black,
+                //             fontStyle: FontStyle.normal,
+                //             fontWeight: FontWeight.w600,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     MaterialButton(
+                //       onPressed: onDelMatch,
+                //       child: Text(
+                //         'Xóa (Delete)',
+                //         style: GoogleFonts.workSans(
+                //           textStyle: TextStyle(
+                //             fontSize: 20,
+                //             color: Colors.black,
+                //             fontStyle: FontStyle.normal,
+                //             fontWeight: FontWeight.w600,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ), //BoxDecoration
+              ), //Container
               SizedBox(
                 height: 100,
               ),
@@ -432,6 +477,8 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                       if (isNhom) {
                         if (isChecked && count == 0) {
                           nhom1.text = member.name!;
+                          // nhom1 = member.name!;
+                          // print('Nhom1: ' + nhom1);
                           count = 1;
                           widget.nnMatch.nhom['player1'] = mapMemberId.keys
                               .firstWhere((k) => mapMemberId[k] == member.name);

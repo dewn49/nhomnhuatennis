@@ -22,7 +22,7 @@ const int NN_STAT_POINT = 4;
 Map<int, List<int>> nnMatchStat = {};
 const int NN_POINT_PER_WIN = 3;
 const int NN_POINT_PER_LOS = -1;
-
+const int NN_POINT_PER_TIE = 1;
 // First update khi login
 Map<String, int> nnDateTimePlay = {
   'yy': 2024,

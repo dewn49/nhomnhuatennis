@@ -40,7 +40,8 @@ void updatePlayerStats(
         nnMatchStat[player]![NN_STAT_DEU] + homePoint;
     nnMatchStat[player]![NN_STAT_POINT] =
         nnMatchStat[player]![NN_STAT_WIN] * NN_POINT_PER_WIN +
-            nnMatchStat[player]![NN_STAT_LOS] * NN_POINT_PER_LOS;
+            nnMatchStat[player]![NN_STAT_LOS] * NN_POINT_PER_LOS +
+            nnMatchStat[player]![NN_STAT_TIE] * NN_POINT_PER_TIE;
   }
 }
 
@@ -64,17 +65,12 @@ void getMemberToday() {
         match, match.getNhua()!, 'player1', match.getNhom()!);
     updatePlayerStatsWithTeam(
         match, match.getNhua()!, 'player2', match.getNhom()!);
-    // int player = int.parse(match.getNhom()?['player1']);
-    // int homePoint = match.getNhom()?['point'];
-    // int guestPoint = match.getNhua()?['point'];
-    // bool isUpdate = nnMatchStat.containsKey(player) == false ? false : true;
-    // updatePlayerStats(player, homePoint, guestPoint, isUpdate);
   }
 
   //sort
   nnMatchStat = Map.fromEntries(nnMatchStat.entries.toList()
     ..sort((e1, e2) =>
-        e1.value[NN_STAT_POINT].compareTo(e2.value[NN_STAT_POINT])));
+        e2.value[NN_STAT_POINT].compareTo(e1.value[NN_STAT_POINT])));
 }
 
 class MatchController extends Controller {
