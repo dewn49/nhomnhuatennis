@@ -18,29 +18,42 @@ class ProductRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeAreaWidget(
-      child: Center(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          shrinkWrap: true,
-          children: ListTile.divideTiles(context: context, tiles: [
-            MaterialButton(
-              onPressed: _logout,
-              child: Text(
-                "Logout".tr().capitalize(),
-              )
-                  .bodyLarge(context)
-                  .setColor(context, (color) => color.surfaceContent),
-            ),
-            MaterialButton(
-              onPressed: () => showCreateUserModal(context),
-              child: Text(
-                "Thêm thành viên".tr().capitalize(),
-              )
-                  .bodyLarge(context)
-                  .setColor(context, (color) => color.surfaceContent),
-            ),
-          ]).toList(),
+    // return SafeAreaWidget(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("NHÔM NHỰA TV".tr()),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.info_outline),
+          ),
+        ],
+      ),
+      body: SafeAreaWidget(
+        child: Center(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            children: ListTile.divideTiles(context: context, tiles: [
+              MaterialButton(
+                onPressed: _logout,
+                child: Text(
+                  "Logout".tr().capitalize(),
+                )
+                    .bodyLarge(context)
+                    .setColor(context, (color) => color.surfaceContent),
+              ),
+              MaterialButton(
+                onPressed: () => showCreateUserModal(context),
+                child: Text(
+                  "Thêm thành viên".tr().capitalize(),
+                )
+                    .bodyLarge(context)
+                    .setColor(context, (color) => color.surfaceContent),
+              ),
+            ]).toList(),
+          ),
         ),
       ),
     );

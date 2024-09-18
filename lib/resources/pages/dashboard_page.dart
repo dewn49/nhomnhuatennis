@@ -42,10 +42,10 @@ class _DashboardPageState extends NyState<DashboardPage> {
   @override
   Widget view(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('NHÔM NHỰA TV'),
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   title: Text('NHÔM NHỰA TV'),
+      //   automaticallyImplyLeading: false,
+      // ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

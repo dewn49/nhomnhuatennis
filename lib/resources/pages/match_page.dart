@@ -96,7 +96,16 @@ class _MatchPageState extends NyState<MatchPage>
     final ColorScheme colorScheme = theme.colorScheme;
     int countStat = 0;
     return Scaffold(
-      // appBar: AppBar(title: const Text("Match")),
+      appBar: AppBar(
+        title: Text("NHÔM NHỰA TV".tr()),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.info_outline),
+          ),
+        ],
+      ),
       body: SafeArea(
           child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -235,48 +244,55 @@ class _MatchPageState extends NyState<MatchPage>
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: DataTable(
-                                      columnSpacing: 15.0,
+                                      columnSpacing: 12.0,
                                       columns: <DataColumn>[
                                         DataColumn(
                                             label: Text(
                                           "STT".toUpperCase(),
                                           style: TextStyle(
+                                              fontSize: 12,
                                               fontWeight: FontWeight.bold),
                                         )),
                                         DataColumn(
                                             label: Text(
                                           "Thành viên".toUpperCase(),
                                           style: TextStyle(
+                                              fontSize: 12,
                                               fontWeight: FontWeight.bold),
                                         )),
                                         DataColumn(
                                             label: Text(
                                           "THAG".toUpperCase(),
                                           style: TextStyle(
+                                              fontSize: 12,
                                               fontWeight: FontWeight.bold),
                                         )),
                                         DataColumn(
                                             label: Text(
                                           "HÒA".toUpperCase(),
                                           style: TextStyle(
+                                              fontSize: 12,
                                               fontWeight: FontWeight.bold),
                                         )),
                                         DataColumn(
                                             label: Text(
                                           "THUA".toUpperCase(),
                                           style: TextStyle(
+                                              fontSize: 12,
                                               fontWeight: FontWeight.bold),
                                         )),
                                         DataColumn(
                                             label: Text(
                                           "Games".toUpperCase(),
                                           style: TextStyle(
+                                              fontSize: 12,
                                               fontWeight: FontWeight.bold),
                                         )),
                                         DataColumn(
                                             label: Text(
                                           "ĐIỂM".toUpperCase(),
                                           style: TextStyle(
+                                            fontSize: 12,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
                                             backgroundColor: Color.fromARGB(

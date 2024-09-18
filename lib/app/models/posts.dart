@@ -35,6 +35,13 @@ class Member {
   int? id;
   String? name;
   String? meta;
+  List<int> stats = [
+    0,
+    0,
+    0,
+    0,
+    0
+  ]; //List<int> = [win, tie, los, deuce, point];
 
   Member({
     this.id,

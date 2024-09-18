@@ -21,7 +21,8 @@ void updatePlayerStats(
     stats[NN_STAT_DEU] = homePoint;
     nnMatchStat[player] = stats;
     stats[NN_STAT_POINT] = stats[NN_STAT_WIN] * NN_POINT_PER_WIN +
-        stats[NN_STAT_LOS] * NN_POINT_PER_LOS;
+        stats[NN_STAT_LOS] * NN_POINT_PER_LOS +
+        stats[NN_STAT_TIE] * NN_POINT_PER_TIE;
   } else {
     if (nnMatchStat.containsKey(player) == false) return; // choi tau ah
     iWin > 0
@@ -70,7 +71,7 @@ void getMemberToday() {
   //sort
   nnMatchStat = Map.fromEntries(nnMatchStat.entries.toList()
     ..sort((e1, e2) =>
-        e2.value[NN_STAT_POINT].compareTo(e1.value[NN_STAT_POINT])));
+        e1.value[NN_STAT_POINT].compareTo(e2.value[NN_STAT_POINT])));
 }
 
 class MatchController extends Controller {

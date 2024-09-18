@@ -1,3 +1,4 @@
+import '/app/controllers/ranking_controller.dart';
 import '/app/controllers/match_view_controller.dart';
 import '/app/controllers/match_controller.dart';
 import '/app/models/post_by_id.dart';
@@ -63,5 +64,7 @@ final Map<Type, dynamic> controllers = {
   MatchController: () => MatchController(),
 
   MatchViewController: () => MatchViewController(),
+
+  RankingController: () => RankingController(),
 };
 

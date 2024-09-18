@@ -19,7 +19,12 @@ const int NN_STAT_TIE = 1;
 const int NN_STAT_LOS = 2;
 const int NN_STAT_DEU = 3;
 const int NN_STAT_POINT = 4;
+//Luu statistic cua tran dau
 Map<int, List<int>> nnMatchStat = {};
+
+//Luu statistic của bang xep han
+Map<int, List<int>> nnRankingStat = {};
+
 const int NN_POINT_PER_WIN = 3;
 const int NN_POINT_PER_LOS = -1;
 const int NN_POINT_PER_TIE = 1;
@@ -43,3 +48,5 @@ void nnUpdateDateTimePlay(int y, int m, int d, int h, int M, int s) {
 }
 
 DateTime selectedDate = DateTime.now();
+
+String nnTimeForRankingStore = 'Chọn thời gian';
