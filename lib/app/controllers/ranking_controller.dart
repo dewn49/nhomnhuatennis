@@ -1,4 +1,5 @@
 import 'package:flutter_app/app/models/posts.dart';
+import 'package:flutter_app/resources/pages/dashboard_page.dart';
 import 'package:flutter_app/resources/pages/ranking_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -127,9 +128,8 @@ class RankingController extends Controller {
     listMember.sort(
         (e1, e2) => e2.stats[NN_STAT_POINT].compareTo(e1.stats[NN_STAT_POINT]));
 
-    // StateAction.pop(RankingPage.path);
-    // StateAction.refreshPage(RankingPage.path);
     // updateState(RankingPage.path);
-    routeTo(RankingPage.path);
+    // StateAction.refreshPage(RankingPage.path);
+    routeTo(DashboardPage.path);
   }
 }
