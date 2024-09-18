@@ -26,24 +26,24 @@ NNTV is simple tennis club management application (For fun :))). Some features a
 
 Ranking feature
 
-![ranking](public\screenshot\2024-09-18_151554.jpg)
+![ranking](./public/screenshot/2024-09-18_151554.jpg)
 
 
 Update ranking
 
-![ranking](public\screenshot\2024-09-18_151542.jpg)
+![ranking](./public/screenshot/2024-09-18_151542.jpg)
 
 
 Manage matchs of selected day
 
-![ranking](public\screenshot\2024-09-18_151631.jpg)
+![ranking](./public/screenshot/2024-09-18_151631.jpg)
 
 
 Player performance statistic
 
-![ranking](public\screenshot\2024-09-18_151642.jpg)
+![ranking](./public/screenshot/2024-09-18_151642.jpg)
 
 
 Update match info
 
-![ranking](public\screenshot\2024-09-18_151738.jpg)
+![ranking](./public/screenshot/2024-09-18_151738.jpg)
