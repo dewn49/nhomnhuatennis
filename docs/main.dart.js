@@ -99481,7 +99481,7 @@ case 3:e.length===o||(0,A.M)(e),++m
 s=2
 break
 case 4:B.b.f6($.Ad,new A.apd())
-A.Ai("/ranking",B.np)
+A.Ai("/dashboard",B.np)
 return A.p(null,r)}})
 return A.q($async$Fu,r)}}
 A.apd.prototype={
