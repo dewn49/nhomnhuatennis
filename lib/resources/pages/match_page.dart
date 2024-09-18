@@ -95,269 +95,273 @@ class _MatchPageState extends NyState<MatchPage>
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
     int countStat = 0;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("NHÔM NHỰA TV".tr()),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.info_outline),
-          ),
-        ],
-      ),
-      body: SafeArea(
-          child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                width: 10.0,
-              ),
-              Text(
-                'Ngày ',
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "${selectedDate.toLocal()}".split(' ')[0],
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                width: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    side: BorderSide(
-                      color: colorScheme.primary,
-                      width: 1,
-                    ),
-                  ),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("NHÔM NHỰA TV".tr()),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.info_outline),
+            ),
+          ],
+        ),
+        body: SafeArea(
+            child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 10.0,
                 ),
-                onPressed: () => _selectDate(context), // Refer step 3
-                child: Text(
-                  'Đổi',
+                Text(
+                  'Ngày ',
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-              ),
-              SizedBox(
-                width: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: colorScheme.onError,
-                  backgroundColor: Color.fromARGB(255, 205, 255, 112),
+                Text(
+                  "${selectedDate.toLocal()}".split(' ')[0],
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                onPressed: () {
-                  setState(() {});
-                }, // Refer step 3
-                child: Text(
-                  'Refresh',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                SizedBox(
+                  width: 10.0,
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10),
-          Text('Tổng số trận: ' + listMatch.length.toString()),
-          SizedBox(height: 10),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 255, 255),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(24),
-                  topRight: Radius.circular(24),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xffC4C4C4).withOpacity(0.25),
-                    spreadRadius: 0,
-                    blurRadius: 8,
-                    offset: const Offset(0, -4), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  TabBar(
-                    // indicator: CircleTabIndicator(color: Colors.black, radius: 3),
-                    labelColor: Color.fromARGB(255, 0, 106, 255),
-                    labelStyle: GoogleFonts.workSans(
-                      textStyle: TextStyle(
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 255, 0, 0),
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700,
+                TextButton(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      side: BorderSide(
+                        color: colorScheme.primary,
+                        width: 1,
                       ),
                     ),
-                    unselectedLabelColor: Color(0xffA8A8A8),
-                    unselectedLabelStyle: GoogleFonts.workSans(
-                      textStyle: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xffA8A8A8),
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    controller: _tabController,
-                    tabs: myTabs.map((e) => e).toList(),
                   ),
-                  SizedBox(height: 10),
-                  Expanded(
-                    child: TabBarView(
+                  onPressed: () => _selectDate(context), // Refer step 3
+                  child: Text(
+                    'Đổi',
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: colorScheme.onError,
+                    backgroundColor: Color.fromARGB(255, 205, 255, 112),
+                  ),
+                  onPressed: () {
+                    setState(() {});
+                  }, // Refer step 3
+                  child: Text(
+                    'Refresh',
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Text('Tổng số trận: ' + listMatch.length.toString()),
+            SizedBox(height: 10),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xffC4C4C4).withOpacity(0.25),
+                      spreadRadius: 0,
+                      blurRadius: 8,
+                      offset: const Offset(0, -4), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    TabBar(
+                      // indicator: CircleTabIndicator(color: Colors.black, radius: 3),
+                      labelColor: Color.fromARGB(255, 0, 106, 255),
+                      labelStyle: GoogleFonts.workSans(
+                        textStyle: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 255, 0, 0),
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      unselectedLabelColor: Color(0xffA8A8A8),
+                      unselectedLabelStyle: GoogleFonts.workSans(
+                        textStyle: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xffA8A8A8),
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       controller: _tabController,
-                      children: [
-                        NyListView.separated(
-                          child: (BuildContext context, dynamic data) {
-                            data as NNMatch;
-                            return InkWell(
-                              child: MatchCard(private: data),
-                              onTap: () {
-                                updateMatch(data);
-                              },
-                            ); //Container
-                          },
-                          data: () async {
-                            return listMatch;
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return Divider();
-                          },
-                        ),
-                        Center(
-                          // child: Container(
-                          //   decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(10),
-                          //     color: Colors.blue,
-                          //   ),
-                          child: Column(
-                            children: [
-                              SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: DataTable(
-                                      columnSpacing: 12.0,
-                                      columns: <DataColumn>[
-                                        DataColumn(
-                                            label: Text(
-                                          "STT".toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                        DataColumn(
-                                            label: Text(
-                                          "Thành viên".toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                        DataColumn(
-                                            label: Text(
-                                          "THAG".toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                        DataColumn(
-                                            label: Text(
-                                          "HÒA".toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                        DataColumn(
-                                            label: Text(
-                                          "THUA".toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                        DataColumn(
-                                            label: Text(
-                                          "Games".toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        )),
-                                        DataColumn(
-                                            label: Text(
-                                          "ĐIỂM".toUpperCase(),
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                            backgroundColor: Color.fromARGB(
-                                                255, 0, 119, 255),
-                                            // fontSize: 20,
-                                          ),
-                                        )),
-                                      ],
-                                      rows: nnMatchStat.entries
-                                          .map<DataRow>((entry) {
-                                        countStat = countStat + 1;
-                                        return DataRow(
-                                          cells: [
-                                            DataCell(
-                                                Text(countStat.toString())),
-                                            DataCell(
-                                                Text(mapMemberId[entry.key]!)),
-                                            DataCell(Text(entry
-                                                .value[NN_STAT_WIN]
-                                                .toString())),
-                                            DataCell(Text(entry
-                                                .value[NN_STAT_TIE]
-                                                .toString())),
-                                            DataCell(Text(entry
-                                                .value[NN_STAT_LOS]
-                                                .toString())),
-                                            DataCell(Text(entry
-                                                .value[NN_STAT_DEU]
-                                                .toString())),
-                                            DataCell(Text(entry
-                                                .value[NN_STAT_POINT]
-                                                .toString()))
-                                          ],
-                                        );
-                                      }).toList()),
-                                  // child: TableView.builder(
-                                  //   columnCount: 7,
-                                  //   rowCount: nnMatchStat.length + 1,
-                                  //   columnBuilder: buildTableSpanColumn,
-                                  //   rowBuilder: buildTableSpanRow,
-                                  //   cellBuilder:
-                                  //       (BuildContext context, TableVicinity vicinity) {
-                                  //     return TableViewCell(
-                                  //         child: Center(child: addText(vicinity)));
-                                  //   },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      tabs: myTabs.map((e) => e).toList(),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10),
+                    Expanded(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          NyListView.separated(
+                            child: (BuildContext context, dynamic data) {
+                              data as NNMatch;
+                              return InkWell(
+                                child: MatchCard(private: data),
+                                onTap: () {
+                                  updateMatch(data);
+                                },
+                              ); //Container
+                            },
+                            data: () async {
+                              return listMatch;
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return Divider();
+                            },
+                          ),
+                          Center(
+                            // child: Container(
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(10),
+                            //     color: Colors.blue,
+                            //   ),
+                            child: Column(
+                              children: [
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: DataTable(
+                                        columnSpacing: 12.0,
+                                        columns: <DataColumn>[
+                                          DataColumn(
+                                              label: Text(
+                                            "STT".toUpperCase(),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                          DataColumn(
+                                              label: Text(
+                                            "Thành viên".toUpperCase(),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                          DataColumn(
+                                              label: Text(
+                                            "THAG".toUpperCase(),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                          DataColumn(
+                                              label: Text(
+                                            "HÒA".toUpperCase(),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                          DataColumn(
+                                              label: Text(
+                                            "THUA".toUpperCase(),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                          DataColumn(
+                                              label: Text(
+                                            "Games".toUpperCase(),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                          DataColumn(
+                                              label: Text(
+                                            "ĐIỂM".toUpperCase(),
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 0, 119, 255),
+                                              // fontSize: 20,
+                                            ),
+                                          )),
+                                        ],
+                                        rows: nnMatchStat.entries
+                                            .map<DataRow>((entry) {
+                                          countStat = countStat + 1;
+                                          return DataRow(
+                                            cells: [
+                                              DataCell(
+                                                  Text(countStat.toString())),
+                                              DataCell(Text(
+                                                  mapMemberId[entry.key]!)),
+                                              DataCell(Text(entry
+                                                  .value[NN_STAT_WIN]
+                                                  .toString())),
+                                              DataCell(Text(entry
+                                                  .value[NN_STAT_TIE]
+                                                  .toString())),
+                                              DataCell(Text(entry
+                                                  .value[NN_STAT_LOS]
+                                                  .toString())),
+                                              DataCell(Text(entry
+                                                  .value[NN_STAT_DEU]
+                                                  .toString())),
+                                              DataCell(Text(entry
+                                                  .value[NN_STAT_POINT]
+                                                  .toString()))
+                                            ],
+                                          );
+                                        }).toList()),
+                                    // child: TableView.builder(
+                                    //   columnCount: 7,
+                                    //   rowCount: nnMatchStat.length + 1,
+                                    //   columnBuilder: buildTableSpanColumn,
+                                    //   rowBuilder: buildTableSpanRow,
+                                    //   cellBuilder:
+                                    //       (BuildContext context, TableVicinity vicinity) {
+                                    //     return TableViewCell(
+                                    //         child: Center(child: addText(vicinity)));
+                                    //   },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          updateMatch(NNMatch());
-        },
-        tooltip: 'Thêm trận đấu',
-        child: const Icon(Icons.add),
+          ],
+        )),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            updateMatch(NNMatch());
+          },
+          tooltip: 'Thêm trận đấu',
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
