@@ -14,47 +14,36 @@ This project is open source and MIT-licenced, we welcome any contributions. You 
 
 ---
 
-## Features
-Some core features available
-* [Routing](https://nylo.dev/docs/5.20.0/router).
-* [Themes and styling](https://nylo.dev/docs/5.20.0/themes-and-styling).
-* [Localization](https://nylo.dev/docs/5.20.0/localization).
-* [CLI for generating project files](https://nylo.dev/docs/5.20.0/metro).
-* [Elegant API Services for Networking](https://nylo.dev/docs/5.20.0/networking).
-* [Creating App Icons](https://nylo.dev/docs/5.20.0/app-icons).
-* [Project Configuration](https://nylo.dev/docs/5.20.0/configuration).
-* [Streamlined Project Structure](https://nylo.dev/docs/5.20.0/directory-structure).
+## Nhôm Nhựa Tennis App (NNTV)
+NNTV is simple tennis club management application (For fun :))). Some features available:
+* Supabase backend, Flutter/Nylo app frontend.
+* Manage team member
+* Manage tennis match
+* Member ranking daily, monthly 
+* [TODO] Tournament management.
 
-## Requirements
-* Dart >= 3.1.3
+## Screenshot:
 
-## Getting Started
+Ranking feature
 
-``` bash
-git clone https://github.com/nylo-core/nylo.git
-```
+![ranking](public\screenshot\2024-09-18_151554.jpg)
 
-## Documentation
-View our [docs](https://nylo.dev/docs) and visit [nylo.dev](https://nylo.dev)
 
-## Changelog
-Please see [CHANGELOG](https://github.com/nylo-core/framework/blob/5.x/CHANGELOG.md) for more information what has changed recently.
+Update ranking
 
-## Social
-* [Twitter](https://twitter.com/nylo_dev)
+![ranking](public\screenshot\2024-09-18_151542.jpg)
 
-## Security
-If you discover any security related issues, please email support@nylo.dev instead of using the issue tracker.
 
-## Contributors
-* [Anthony Gordon](https://github.com/agordn52)
-* [lpdevit](https://github.com/lpdevit)
-* [Abdulrasheed1729](https://github.com/Abdulrasheed1729)
-* [Rashid-Khabeer](https://github.com/Rashid-Khabeer)
-* [youssefKadaouiAbbassi](https://github.com/youssefKadaouiAbbassi)
-* [jeremyhalin](https://github.com/jeremyhalin)
-* [abdulawalarif](https://github.com/abdulawalarif)
+Manage matchs of selected day
 
-## Licence
+![ranking](public\screenshot\2024-09-18_151631.jpg)
 
-The MIT License (MIT). Please view the [License](https://github.com/nylo-core/nylo/blob/master/licence) File for more information.
+
+Player performance statistic
+
+![ranking](public\screenshot\2024-09-18_151642.jpg)
+
+
+Update match info
+
+![ranking](public\screenshot\2024-09-18_151738.jpg)
