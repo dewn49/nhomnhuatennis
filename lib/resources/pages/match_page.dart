@@ -1,5 +1,7 @@
+import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/controllers/globals.dart';
+import 'package:flutter_app/app/events/update_match_event.dart';
 import 'package:flutter_app/app/models/posts.dart';
 import 'package:flutter_app/resources/pages/match_view_page.dart';
 import 'package:flutter_app/resources/widgets/match_card_widget.dart';
@@ -68,12 +70,12 @@ class _MatchPageState extends NyState<MatchPage>
   /// Use boot if you need to load data before the view is rendered.
   @override
   boot() async {
-    await controller.reloadListMatch();
+    await MatchController.reloadListMatch();
   }
 
   refresh(bool isAdd) {
     setState(() {
-      if (isAdd) controller.reloadListMatch();
+      if (isAdd) MatchController.reloadListMatch();
     });
   }
 
@@ -99,12 +101,19 @@ class _MatchPageState extends NyState<MatchPage>
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("NHÔM NHỰA TV".tr()),
+          title: Text("NHÔM vs. NHỰA".tr()),
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.info_outline),
+              icon: const Icon(
+                Icons.refresh,
+                size: 32,
+              ),
+              tooltip: 'Cập nhật',
+              onPressed: () {
+                setState(() {});
+              },
+              color: Color.fromARGB(255, 254, 254, 0),
             ),
           ],
         ),
@@ -112,60 +121,22 @@ class _MatchPageState extends NyState<MatchPage>
             child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(
-                  'Ngày ',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "${selectedDate.toLocal()}".split(' ')[0],
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      side: BorderSide(
-                        color: colorScheme.primary,
-                        width: 1,
-                      ),
-                    ),
-                  ),
-                  onPressed: () => _selectDate(context), // Refer step 3
-                  child: Text(
-                    'Đổi',
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: colorScheme.onError,
-                    backgroundColor: Color.fromARGB(255, 205, 255, 112),
-                  ),
-                  onPressed: () {
-                    setState(() {});
-                  }, // Refer step 3
-                  child: Text(
-                    'Refresh',
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
+            EasyDateTimeLine(
+              initialDate: DateTime.now(),
+              onDateChange: (dateVal) {
+                nnUpdateDateTimePlay(dateVal.year, dateVal.month, dateVal.day,
+                    dateVal.hour, dateVal.minute, dateVal.second);
+                selectedDate = dateVal;
+                event<UpdateMatchEvent>(data: {'setStateFn': this.setState});
+              },
+              dayProps: const EasyDayProps(
+                // You must specify the width in this case.
+                width: 64.0,
+                // The height is not required in this case.
+                height: 64.0,
+              ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             Text('Tổng số trận: ' + listMatch.length.toString()),
             SizedBox(height: 10),
             Expanded(
@@ -499,7 +470,7 @@ class _MatchPageState extends NyState<MatchPage>
 
       setState(() {
         selectedDate = picked;
-        controller.reloadListMatch();
+        MatchController.reloadListMatch();
       });
     }
   }

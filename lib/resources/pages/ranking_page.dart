@@ -1,6 +1,7 @@
 // import 'package:animated_floating_buttons/widgets/animated_floating_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/controllers/globals.dart';
+import 'package:flutter_app/app/events/update_rank_event.dart';
 import 'package:flutter_app/resources/widgets/create_member_widget.dart';
 import 'package:flutter_app/resources/widgets/member_view_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,6 +58,13 @@ class _RankingPageState extends NyState<RankingPage>
     'Năm 2024',
   ];
 
+  static List<String> NNSortType = <String>[
+    'BXH theo điểm',
+    'BXH theo số game',
+    'BXH theo số trận',
+  ];
+
+  String nnSortController = NNSortType[0];
   // /// when you want to close the menu you have to create
   // final GlobalKey<AnimatedFloatingActionButtonState> key =
   //     GlobalKey<AnimatedFloatingActionButtonState>();
@@ -125,68 +133,41 @@ class _RankingPageState extends NyState<RankingPage>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // TabBar(
-              //     // indicator: CircleTabIndicator(color: Colors.black, radius: 3),
-              //     labelColor: Color.fromARGB(255, 0, 106, 255),
-              //     labelStyle: GoogleFonts.workSans(
-              //       textStyle: TextStyle(
-              //         fontSize: 16,
-              //         color: Color.fromARGB(255, 255, 0, 0),
-              //         fontStyle: FontStyle.normal,
-              //         fontWeight: FontWeight.w700,
-              //       ),
-              //     ),
-              //     unselectedLabelColor: Color(0xffA8A8A8),
-              //     unselectedLabelStyle: GoogleFonts.workSans(
-              //       textStyle: TextStyle(
-              //         fontSize: 12,
-              //         color: Color(0xffA8A8A8),
-              //         fontStyle: FontStyle.normal,
-              //         fontWeight: FontWeight.w600,
-              //       ),
-              //     ),
-              //     controller: _tabController,
-              //     tabs: myTabs.map((e) => e).toList()),
-              // SizedBox(height: 5),
-              // Text(
-              //   'Thứ ..., ngày ... tháng ... năm 2024',
-              //   style: GoogleFonts.nunitoSans(
-              //     textStyle: TextStyle(
-              //       fontSize: 16,
-              //       color: Color.fromARGB(255, 0, 106, 255),
-              //       fontStyle: FontStyle.normal,
-              //       fontWeight: FontWeight.w500,
-              //     ),
-              //   ),
-              // ),
-              DropdownButton(
-                // Initial Value
-                value: nnTimeForRanking,
-                // fixed: black background
-                focusColor: Theme.of(context).scaffoldBackgroundColor,
-                // Down Arrow Icon
-                // icon: const Icon(Icons.keyboard_arrow_down),
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 16,
-                ),
+              Row(
+                children: [
+                  SizedBox(width: 10),
+                  Text(nnSortController),
+                  SizedBox(width: 10),
+                  DropdownButton(
+                    // Initial Value
+                    value: nnTimeForRanking,
+                    // fixed: black background
+                    focusColor: Theme.of(context).scaffoldBackgroundColor,
+                    // Down Arrow Icon
+                    // icon: const Icon(Icons.keyboard_arrow_down),
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 16,
+                    ),
 
-                // Array list of items
-                items: nnMonths.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (String? newValue) {
-                  setState(() {
-                    nnTimeForRanking = newValue!;
-                    nnTimeForRankingStore = newValue!;
-                    _onUpdateRanking();
-                  });
-                },
+                    // Array list of items
+                    items: nnMonths.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        nnTimeForRanking = newValue!;
+                        nnTimeForRankingStore = newValue!;
+                        _onUpdateRanking();
+                      });
+                    },
+                  ),
+                ],
               ),
               SizedBox(height: 5),
               Expanded(
@@ -330,10 +311,10 @@ class _RankingPageState extends NyState<RankingPage>
         //     ),
         floatingActionButton: SpeedDial(
           child: Icon(Icons.sort),
-          closedForegroundColor: Colors.black,
-          openForegroundColor: Colors.white,
-          closedBackgroundColor: Colors.white,
-          openBackgroundColor: Colors.black,
+          closedForegroundColor: const Color.fromARGB(255, 255, 255, 255),
+          openForegroundColor: Color.fromARGB(255, 0, 0, 0),
+          closedBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
+          openBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
           // labelsStyle: /* Your label TextStyle goes here */,
           labelsBackgroundColor: Colors.white,
           // controller: /* Your custom animation controller goes here */,
@@ -348,6 +329,7 @@ class _RankingPageState extends NyState<RankingPage>
                   //sort
                   listMember.sort((e1, e2) => e2.stats[NN_STAT_POINT]
                       .compareTo(e1.stats[NN_STAT_POINT]));
+                  nnSortController = NNSortType[0];
                 });
               },
               // closeSpeedDialOnPressed: false,
@@ -359,10 +341,12 @@ class _RankingPageState extends NyState<RankingPage>
               label: 'Sắp xếp theo trận đấu',
               onPressed: () {
                 setState(() {
+                  nnSortController = NNSortType[2];
                   //sort
                   listMember.sort((e1, e2) {
                     return (e2.stats[NN_STAT_WIN] +
-                            e2.stats[NN_STAT_TIE + e2.stats[NN_STAT_LOS]])
+                            e2.stats[NN_STAT_TIE] +
+                            e2.stats[NN_STAT_LOS])
                         .compareTo(e1.stats[NN_STAT_WIN] +
                             e1.stats[NN_STAT_TIE] +
                             e1.stats[NN_STAT_LOS]);
@@ -377,6 +361,7 @@ class _RankingPageState extends NyState<RankingPage>
               label: 'Sắp xếp theo số Game',
               onPressed: () {
                 setState(() {
+                  nnSortController = NNSortType[1];
                   //sort
                   listMember.sort((e1, e2) =>
                       e2.stats[NN_STAT_DEU].compareTo(e1.stats[NN_STAT_DEU]));
@@ -405,8 +390,8 @@ class _RankingPageState extends NyState<RankingPage>
   _onUpdateRanking() {
     int mo = nnMonths.indexOf(nnTimeForRanking);
     print('Chọn thống kê tháng: ' + mo.toString());
-    widget.controller.updateRankingByMonth(2024, mo);
-
+    widget.controller.updateRankingByMonth(
+        2024, mo, {'setStateFn': this.setState, 'context': context});
     // setState(() {
     showDialog(
       context: context,

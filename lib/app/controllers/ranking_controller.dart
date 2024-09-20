@@ -1,3 +1,4 @@
+import 'package:flutter_app/app/events/update_rank_event.dart';
 import 'package:flutter_app/app/models/posts.dart';
 import 'package:flutter_app/resources/pages/dashboard_page.dart';
 import 'package:flutter_app/resources/pages/ranking_page.dart';
@@ -83,7 +84,7 @@ class RankingController extends Controller {
     super.construct(context);
   }
 
-  Future<void> updateRankingByMonth(int year, int mon) async {
+  Future<void> updateRankingByMonth(int year, int mon, dynamic data) async {
     int? memberId = 4;
 
     String from = DateTime.utc(year, mon, 1).toString();
@@ -134,6 +135,8 @@ class RankingController extends Controller {
 
     // updateState(RankingPage.path);
     // StateAction.refreshPage(RankingPage.path);
-    routeTo(DashboardPage.path);
+    // routeTo(DashboardPage.path);
+    event<UpdateRankEvent>(
+        data: {'setStateFn': data['setStateFn'], 'context': data['context']});
   }
 }

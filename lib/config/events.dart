@@ -1,3 +1,5 @@
+import '/app/events/update_rank_event.dart';
+import '/app/events/update_match_event.dart';
 import '/app/models/user.dart';
 import '/app/events/login_event.dart';
 import '/app/events/logout_event.dart';
@@ -17,5 +19,9 @@ final Map<Type, NyEvent> events = {
   AuthUserEvent: AuthUserEvent(),
   SyncAuthToBackpackEvent: SyncAuthToBackpackEvent<User>(),
 
-};
+
+  UpdateMatchEvent: UpdateMatchEvent(),
+  
+  UpdateRankEvent: UpdateRankEvent(),
+  };
 

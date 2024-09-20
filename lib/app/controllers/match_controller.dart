@@ -1,3 +1,4 @@
+import 'package:flutter_app/app/events/update_match_event.dart';
 import 'package:flutter_app/app/models/posts.dart';
 import 'package:flutter_app/resources/widgets/match_card_widget.dart';
 import 'package:intl/intl.dart';
@@ -80,7 +81,7 @@ class MatchController extends Controller {
     super.construct(context);
   }
 
-  Future<void> reloadListMatch() async {
+  static Future<void> reloadListMatch() async {
     String from = DateTime.utc(
             nnDateTimePlay['yy']!, nnDateTimePlay['mo']!, nnDateTimePlay['dd']!)
         .toString();

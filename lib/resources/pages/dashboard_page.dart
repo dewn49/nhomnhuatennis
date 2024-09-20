@@ -8,6 +8,7 @@ import '../widgets/logo_widget.dart';
 import '../widgets/page1.dart';
 import '../widgets/product_rating_widget.dart';
 // import '../widgets/schedule_list.dart';
+import 'package:flutter_app/app/controllers/globals.dart';
 
 class DashboardPage extends NyStatefulWidget {
   static const path = '/dashboard';
@@ -16,8 +17,6 @@ class DashboardPage extends NyStatefulWidget {
 }
 
 class _DashboardPageState extends NyState<DashboardPage> {
-  int _currentIndex = 0;
-
   final List<Widget> _pages = [
     Container(
       child: RankingPage(),
@@ -38,6 +37,8 @@ class _DashboardPageState extends NyState<DashboardPage> {
   // boot() async {
   //
   // }
+// Main tab index
+  int NNcurrentIndex = 0;
 
   @override
   Widget view(BuildContext context) {
@@ -46,12 +47,12 @@ class _DashboardPageState extends NyState<DashboardPage> {
       //   title: Text('NHÔM NHỰA TV'),
       //   automaticallyImplyLeading: false,
       // ),
-      body: _pages[_currentIndex],
+      body: _pages[NNcurrentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: NNcurrentIndex,
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
+            NNcurrentIndex = index;
           });
         },
         items: [
