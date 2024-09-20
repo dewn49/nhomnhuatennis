@@ -16,34 +16,35 @@ This project is open source and MIT-licenced, we welcome any contributions. You 
 
 ## Nhôm Nhựa Tennis App (NNTV)
 NNTV is simple tennis club management application (For fun :))). Some features available:
-* Supabase backend, Flutter/Nylo app frontend.
-* Manage team member
-* Manage tennis match
-* Member ranking daily, monthly 
-* [TODO] Tournament management.
+- [x] Supabase backend, Flutter/Nylo app frontend.
+- [x] Manage team member
+- [x] Manage tennis match
+- [x] Member ranking daily, monthly 
+- [ ] Record list (like pokemon medal milestone: the first person reaches 300 games/700 games/100 matches/200 matched/50 match win/100 match win) 
+- [ ] Tournament management.
 
 ## Screenshot:
 
-Ranking feature
+ * Ranking feature
 
 ![ranking](./public/screenshot/2024-09-18_151554.jpg)
 
 
-Update ranking
+ * Update ranking
 
 ![ranking](./public/screenshot/2024-09-18_151542.jpg)
 
 
-Manage matchs of selected day
+ * Manage matchs of selected day
 
 ![ranking](./public/screenshot/2024-09-18_151631.jpg)
 
 
-Player performance statistic
+ * Player performance statistic
 
 ![ranking](./public/screenshot/2024-09-18_151642.jpg)
 
 
-Update match info
+ * Update match info
 
 ![ranking](./public/screenshot/2024-09-18_151738.jpg)

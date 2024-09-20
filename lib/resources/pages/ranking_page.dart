@@ -153,13 +153,14 @@ class _RankingPageState extends NyState<RankingPage>
                   setState(() {
                     nnTimeForRanking = newValue!;
                     nnTimeForRankingStore = newValue!;
+                    _onUpdateRanking();
                   });
                 },
               ),
               SizedBox(height: 5),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                   // decoration: BoxDecoration(
                   //   color: Color.fromARGB(255, 255, 255, 255),
                   //   borderRadius: BorderRadius.only(
@@ -178,7 +179,12 @@ class _RankingPageState extends NyState<RankingPage>
                   child: NyListView.separated(
                     child: (BuildContext context, dynamic data) {
                       data as Member;
-                      return ListTile(
+                      return SizedBox(
+                        height: 50,
+                        child: ListTile(
+                          // minVerticalPadding: 10,
+                          dense: true,
+                          visualDensity: VisualDensity(vertical: -3),
                           leading: CircleAvatar(
                               radius: (30),
                               backgroundColor:
@@ -187,8 +193,8 @@ class _RankingPageState extends NyState<RankingPage>
                                 // borderRadius: BorderRadius.circular(50),
                                 child: Image.asset(
                                   "user2.png",
-                                  height: 100,
-                                  width: 100,
+                                  height: 64,
+                                  width: 64,
                                 ).localAsset(),
                               )),
                           onTap: () {
@@ -209,17 +215,23 @@ class _RankingPageState extends NyState<RankingPage>
                             ),
                           ),
                           subtitle: SizedBox(
-                              child: Row(children: [
-                            SizedBox(
-                              child: Text(
-                                  'Thăg/Hòa/Thua: ${data.stats[NN_STAT_WIN]}/${data.stats[NN_STAT_TIE]}/${data.stats[NN_STAT_LOS]}'),
-                              width: 200,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  child: Text(
+                                      'Thăg/Hòa/Thua: ${data.stats[NN_STAT_WIN]}/${data.stats[NN_STAT_TIE]}/${data.stats[NN_STAT_LOS]}'),
+                                  width: 200,
+                                ),
+                                SizedBox(
+                                  child: Text(
+                                      'Điểm: ${data.stats[NN_STAT_POINT]}'),
+                                  width: 100,
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              child: Text('Điểm: ${data.stats[NN_STAT_POINT]}'),
-                              width: 100,
-                            ),
-                          ])));
+                          ),
+                        ),
+                      );
                     },
                     data: () async {
                       // SupabaseClient get client => Supabase.instance.client;
