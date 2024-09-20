@@ -122,7 +122,10 @@ class _RankingPageState extends NyState<RankingPage>
                 size: 32,
               ),
               tooltip: 'Cập nhật',
-              onPressed: _onUpdateRanking,
+              onPressed: () {
+                nnSortController = NNSortType[0];
+                _onUpdateRanking();
+              },
               color: Color.fromARGB(255, 254, 254, 0),
             ),
           ],
@@ -163,6 +166,7 @@ class _RankingPageState extends NyState<RankingPage>
                       setState(() {
                         nnTimeForRanking = newValue!;
                         nnTimeForRankingStore = newValue!;
+                        nnSortController = NNSortType[0];
                         _onUpdateRanking();
                       });
                     },
@@ -316,7 +320,7 @@ class _RankingPageState extends NyState<RankingPage>
           closedBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
           openBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
           // labelsStyle: /* Your label TextStyle goes here */,
-          labelsBackgroundColor: Colors.white,
+          labelsBackgroundColor: const Color.fromARGB(255, 235, 235, 235),
           // controller: /* Your custom animation controller goes here */,
           speedDialChildren: <SpeedDialChild>[
             SpeedDialChild(
@@ -390,9 +394,9 @@ class _RankingPageState extends NyState<RankingPage>
   _onUpdateRanking() {
     int mo = nnMonths.indexOf(nnTimeForRanking);
     print('Chọn thống kê tháng: ' + mo.toString());
+    if (mo == 0) return; // index 0 là legend nen ko xu ly
     widget.controller.updateRankingByMonth(
         2024, mo, {'setStateFn': this.setState, 'context': context});
-    // setState(() {
     showDialog(
       context: context,
       barrierDismissible: false,

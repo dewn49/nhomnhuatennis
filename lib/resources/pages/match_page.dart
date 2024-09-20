@@ -129,11 +129,31 @@ class _MatchPageState extends NyState<MatchPage>
                 selectedDate = dateVal;
                 event<UpdateMatchEvent>(data: {'setStateFn': this.setState});
               },
+              headerProps: const EasyHeaderProps(
+                monthPickerType: MonthPickerType.switcher,
+                dateFormatter: DateFormatter.fullDateDMY(),
+              ),
+              activeColor: const Color.fromARGB(255, 223, 255, 93),
               dayProps: const EasyDayProps(
+                dayStructure: DayStructure.dayNumDayStr,
                 // You must specify the width in this case.
-                width: 64.0,
+                width: 56.0,
                 // The height is not required in this case.
-                height: 64.0,
+                height: 56.0,
+                todayHighlightStyle: TodayHighlightStyle.withBackground,
+                todayHighlightColor: Color(0xffE1ECC8),
+                activeDayStyle: DayStyle(
+                  borderRadius: 48.0,
+                  dayNumStyle: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                inactiveDayStyle: DayStyle(
+                  dayNumStyle: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 5),
@@ -475,23 +495,3 @@ class _MatchPageState extends NyState<MatchPage>
     }
   }
 }
-
-class Team {
-  int pos, p, w, d, l, gd, pts;
-  String name;
-  Team(
-      {required this.pos,
-      required this.name,
-      required this.p,
-      required this.w,
-      required this.d,
-      required this.l,
-      required this.gd,
-      required this.pts});
-}
-
-var teams = <Team>[
-  Team(pos: 1, name: "Basaksehir", p: 14, w: 9, d: 3, l: 2, gd: 13, pts: 30),
-  Team(pos: 2, name: "Kasimpasa", p: 14, w: 8, d: 2, l: 4, gd: 10, pts: 26),
-  Team(pos: 3, name: "Besiktas", p: 14, w: 7, d: 3, l: 4, gd: 8, pts: 24),
-];
