@@ -1,9 +1,11 @@
+// import 'package:animated_floating_buttons/widgets/animated_floating_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/controllers/globals.dart';
 import 'package:flutter_app/resources/widgets/create_member_widget.dart';
 import 'package:flutter_app/resources/widgets/member_view_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nylo_framework/nylo_framework.dart';
+import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../app/models/posts.dart';
@@ -52,7 +54,36 @@ class _RankingPageState extends NyState<RankingPage>
     'Tháng 10/2024',
     'Tháng 11/2024',
     'Tháng 12/2024',
+    'Năm 2024',
   ];
+
+  // /// when you want to close the menu you have to create
+  // final GlobalKey<AnimatedFloatingActionButtonState> key =
+  //     GlobalKey<AnimatedFloatingActionButtonState>();
+
+  // /// and then assign it to the our widget library
+  // ///
+  // Widget float1() {
+  //   return Container(
+  //     child: FloatingActionButton(
+  //       onPressed: null,
+  //       heroTag: "btn1",
+  //       tooltip: 'Sắp xếp theo Tổng Điểm',
+  //       child: Icon(Icons.add),
+  //     ),
+  //   );
+  // }
+
+  // Widget float2() {
+  //   return Container(
+  //     child: FloatingActionButton(
+  //       onPressed: null,
+  //       heroTag: "btn2",
+  //       tooltip: 'Sắp xếp theo Tổng số trận',
+  //       child: Icon(Icons.add),
+  //     ),
+  //   );
+  // }
 
   String nnTimeForRanking = nnTimeForRankingStore;
 
@@ -202,18 +233,54 @@ class _RankingPageState extends NyState<RankingPage>
                             selectedMember.name = data.name;
                             _onRakingItemsTap(context, data);
                           },
-                          title: Text(
-                            data.name ?? "",
-                            maxLines: 1,
-                            style: GoogleFonts.nunitoSans(
-                              textStyle: TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 255, 0, 111),
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w700,
-                              ),
+                          title: SizedBox(
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  child: Text(
+                                    data.name ?? "",
+                                    maxLines: 1,
+                                    style: GoogleFonts.nunitoSans(
+                                      textStyle: TextStyle(
+                                        fontSize: 16,
+                                        color: Color.fromARGB(255, 255, 0, 111),
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                  width: 200,
+                                ),
+                                SizedBox(
+                                  child: Text(
+                                    'Điểm: ${data.stats[NN_STAT_POINT]}',
+                                    style: GoogleFonts.nunitoSans(
+                                      textStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Color.fromARGB(255, 0, 102, 255),
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                  width: 100,
+                                ),
+                              ],
                             ),
                           ),
+                          // title:
+                          // Text(
+                          //   data.name ?? "",
+                          //   maxLines: 1,
+                          //   style: GoogleFonts.nunitoSans(
+                          //     textStyle: TextStyle(
+                          //       fontSize: 16,
+                          //       color: Color.fromARGB(255, 255, 0, 111),
+                          //       fontStyle: FontStyle.normal,
+                          //       fontWeight: FontWeight.w700,
+                          //     ),
+                          //   ),
+                          // ),
                           subtitle: SizedBox(
                             child: Row(
                               children: [
@@ -223,8 +290,8 @@ class _RankingPageState extends NyState<RankingPage>
                                   width: 200,
                                 ),
                                 SizedBox(
-                                  child: Text(
-                                      'Điểm: ${data.stats[NN_STAT_POINT]}'),
+                                  child:
+                                      Text('Games: ${data.stats[NN_STAT_DEU]}'),
                                   width: 100,
                                 ),
                               ],
@@ -246,8 +313,81 @@ class _RankingPageState extends NyState<RankingPage>
               ),
             ],
           ),
-          // ),
         ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {},
+        //   tooltip: 'Sắp xếp',
+        //   child: const Icon(Icons.sort),
+        //   backgroundColor: new Color(0xFFE57373),
+        // ),
+        // floatingActionButton: AnimatedFloatingActionButton(
+        //     //Fab list
+        //     fabButtons: <Widget>[float1(), float2()],
+        //     key: key,
+        //     colorStartAnimation: Colors.blue,
+        //     colorEndAnimation: Colors.red,
+        //     animatedIconData: AnimatedIcons.menu_close //To principal button
+        //     ),
+        floatingActionButton: SpeedDial(
+          child: Icon(Icons.sort),
+          closedForegroundColor: Colors.black,
+          openForegroundColor: Colors.white,
+          closedBackgroundColor: Colors.white,
+          openBackgroundColor: Colors.black,
+          // labelsStyle: /* Your label TextStyle goes here */,
+          labelsBackgroundColor: Colors.white,
+          // controller: /* Your custom animation controller goes here */,
+          speedDialChildren: <SpeedDialChild>[
+            SpeedDialChild(
+              child: Icon(Icons.directions_run),
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.red,
+              label: 'Sắp xếp theo điểm',
+              onPressed: () {
+                setState(() {
+                  //sort
+                  listMember.sort((e1, e2) => e2.stats[NN_STAT_POINT]
+                      .compareTo(e1.stats[NN_STAT_POINT]));
+                });
+              },
+              // closeSpeedDialOnPressed: false,
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.directions_walk),
+              foregroundColor: Colors.black,
+              backgroundColor: Colors.yellow,
+              label: 'Sắp xếp theo trận đấu',
+              onPressed: () {
+                setState(() {
+                  //sort
+                  listMember.sort((e1, e2) {
+                    return (e2.stats[NN_STAT_WIN] +
+                            e2.stats[NN_STAT_TIE + e2.stats[NN_STAT_LOS]])
+                        .compareTo(e1.stats[NN_STAT_WIN] +
+                            e1.stats[NN_STAT_TIE] +
+                            e1.stats[NN_STAT_LOS]);
+                  });
+                });
+              },
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.directions_run),
+              foregroundColor: Colors.white,
+              backgroundColor: Color.fromARGB(255, 0, 255, 81),
+              label: 'Sắp xếp theo số Game',
+              onPressed: () {
+                setState(() {
+                  //sort
+                  listMember.sort((e1, e2) =>
+                      e2.stats[NN_STAT_DEU].compareTo(e1.stats[NN_STAT_DEU]));
+                });
+              },
+              // closeSpeedDialOnPressed: false,
+            ),
+            //  Your other SpeedDialChildren go here.
+          ],
+        ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       ),
     );
   }

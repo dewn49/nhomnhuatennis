@@ -91,6 +91,10 @@ class RankingController extends Controller {
 
     if (mon == 12) {
       to = DateTime.utc(year, mon, 31).toString();
+    }
+    if (mon == 13) {
+      from = DateTime.utc(year, 1, 1).toString();
+      to = DateTime.utc(year, 12, 31).toString();
     } else
       to = DateTime.utc(year, mon + 1, 1).toString();
 
