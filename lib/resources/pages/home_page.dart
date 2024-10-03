@@ -52,7 +52,12 @@ class _HomePageState extends NyState<HomePage> {
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("NHÔM NHỰA TV".tr()),
+          title: Text(
+            "NHÔM NHỰA TV".tr(),
+            style: TextStyle(
+              color: Color.fromARGB(255, 255, 209, 84),
+            ),
+          ),
           centerTitle: true,
           actions: [
             IconButton(
@@ -60,6 +65,7 @@ class _HomePageState extends NyState<HomePage> {
               icon: const Icon(Icons.info_outline),
             ),
           ],
+          backgroundColor: Color.fromARGB(255, 61, 61, 61),
         ),
         body: SafeAreaWidget(
           child: Center(

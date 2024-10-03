@@ -23,7 +23,16 @@ class ProductRating extends StatelessWidget {
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("NHÔM NHỰA TV".tr()),
+          backgroundColor: Color.fromARGB(255, 61, 61, 61),
+          title: Text(
+            "NHÔM NHỰA TV".tr(),
+            style: TextStyle(
+              fontSize: 18,
+              color: Color.fromARGB(255, 255, 209, 84),
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
           centerTitle: true,
           actions: [
             IconButton(

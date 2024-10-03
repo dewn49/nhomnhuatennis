@@ -101,7 +101,18 @@ class _MatchPageState extends NyState<MatchPage>
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("NHÔM vs. NHỰA".tr()),
+          backgroundColor: Color.fromARGB(255, 61, 61, 61),
+          title: Text(
+            "NHÔM vs. NHỰA".tr(),
+            style: GoogleFonts.workSans(
+              textStyle: TextStyle(
+                fontSize: 20,
+                color: Color.fromARGB(255, 255, 209, 84),
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           centerTitle: true,
           actions: [
             IconButton(

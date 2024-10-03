@@ -105,12 +105,13 @@ class _RankingPageState extends NyState<RankingPage>
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 61, 61, 61),
           centerTitle: true,
           title: const Text(
             'Bảng xếp hạng Nhôm Nhựa',
             style: TextStyle(
               fontSize: 18,
-              color: Color.fromARGB(255, 255, 255, 0),
+              color: Color.fromARGB(255, 255, 209, 84),
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w700,
             ),

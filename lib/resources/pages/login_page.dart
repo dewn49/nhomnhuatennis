@@ -27,12 +27,13 @@ class _LoginPageState extends NyState<LoginPage> {
         style: GoogleFonts.workSans(
           textStyle: TextStyle(
             fontSize: 20,
-            color: Colors.black,
+            color: Color.fromARGB(255, 255, 209, 84),
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w600,
           ),
         ),
       )),
+      backgroundColor: Color.fromARGB(255, 61, 61, 61),
       body: SafeArea(
         child: Container(),
       ),

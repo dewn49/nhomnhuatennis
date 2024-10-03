@@ -354,29 +354,30 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                           onPressed: onSelectMemberNhuaButton,
                           child: Text('Select members'),
                         ),
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            // color: Color.fromARGB(255, 255, 182, 79),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Container(
-                            height: 30,
-                            child: NyTextField(
-                              controller: nhua1,
-                              enabled: false,
-                              dummyData:
-                                  getPlayerNameByOrder(widget.nnMatch.nhua, 1),
-                              style: GoogleFonts.workSans(
-                                textStyle: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                        // DecoratedBox(
+                        //   decoration: BoxDecoration(
+                        //     // color: Color.fromARGB(255, 255, 182, 79),
+                        //     borderRadius: BorderRadius.circular(10),
+                        //   ),
+                        //   child: Container(
+                        //     height: 30,
+                        //     child:
+                        NyTextField(
+                          controller: nhua1,
+                          enabled: false,
+                          dummyData:
+                              getPlayerNameByOrder(widget.nnMatch.nhua, 1),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
+                        //   ),
+                        // ),
                         NyTextField(
                           controller: nhua2,
                           enabled: false,
