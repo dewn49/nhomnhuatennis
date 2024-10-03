@@ -150,7 +150,10 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
             child: Padding(
           padding: const EdgeInsets.all(1.0),
           child: Column(
-            children: <Widget>[
+            children: [
+              // SizedBox(
+              //   height: 1,
+              // ),
               Row(
                 children: <Widget>[
                   Container(
@@ -158,20 +161,72 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                     height: 210,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color.fromARGB(255, 217, 255, 79),
+                      color: Color.fromARGB(255, 237, 237, 237),
                     ), //BoxDecoration
                     child: Column(
                       children: [
-                        Text(
-                          "Đội Nhôm (Alumi)",
-                          style: GoogleFonts.workSans(
-                            textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
+                        SizedBox(
+                          height: 10,
+                        ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 146, 255, 79),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            "  Đội Nhôm (Alumi)  ",
+                            style: GoogleFonts.workSans(
+                              textStyle: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                // decoration: BoxDecoration(border: Border.all()),
+                                child: DropdownButton(
+                                  // Initial Value
+                                  value: nhom_point,
+                                  // Down Arrow Icon
+                                  // icon: const Icon(Icons.keyboard_arrow_down),
+                                  style: TextStyle(
+                                    color: const Color.fromARGB(255, 0, 0, 0),
+                                    fontSize: 30,
+                                  ),
+
+                                  // Array list of items
+                                  items: items.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  // After selecting the desired option,it will
+                                  // change button value to selected value
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      nhom_point = newValue!;
+                                      widget.nnMatch.nhom['point'] = newValue;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
                         ),
                         TextButton(
                           style: ButtonStyle(
@@ -223,37 +278,6 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                             ),
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(border: Border.all()),
-                          child: DropdownButton(
-                            // Initial Value
-                            value: nhom_point,
-
-                            // Down Arrow Icon
-                            // icon: const Icon(Icons.keyboard_arrow_down),
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 0, 0, 0),
-                              fontSize: 30,
-                            ),
-
-                            // Array list of items
-                            items: items.map((String items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(items),
-                              );
-                            }).toList(),
-                            // After selecting the desired option,it will
-                            // change button value to selected value
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                nhom_point = newValue!;
-                                widget.nnMatch.nhom['point'] = newValue;
-                              });
-                            },
-                          ),
-                        ),
                       ],
                     ),
                   ), //Container
@@ -265,60 +289,34 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                     height: 210,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color.fromARGB(255, 254, 198, 194),
+                      color: Color.fromARGB(255, 237, 237, 237),
                     ),
                     child: Column(
                       children: [
-                        Text(
-                          "Đội Nhựa (Plastic)",
-                          style: GoogleFonts.workSans(
-                            textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                        SizedBox(
+                          height: 10,
                         ),
-                        TextButton(
-                          style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.blue),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 255, 182, 79),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          onPressed: onSelectMemberNhuaButton,
-                          child: Text('Select members'),
-                        ),
-                        NyTextField(
-                          controller: nhua1,
-                          enabled: false,
-                          dummyData:
-                              getPlayerNameByOrder(widget.nnMatch.nhua, 1),
-                          style: GoogleFonts.workSans(
-                            textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        NyTextField(
-                          controller: nhua2,
-                          enabled: false,
-                          dummyData:
-                              getPlayerNameByOrder(widget.nnMatch.nhua, 2),
-                          style: GoogleFonts.workSans(
-                            textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
+                          child: Text(
+                            "  Đội Nhựa (Plastic)  ",
+                            style: GoogleFonts.workSans(
+                              textStyle: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
                         Container(
+                          // points
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(border: Border.all()),
+                          // decoration: BoxDecoration(border: Border.all()),
                           child: DropdownButton(
                             // Initial Value
                             value: nhua_point,
@@ -346,6 +344,51 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                                 widget.nnMatch.nhua['point'] = newValue;
                               });
                             },
+                          ),
+                        ),
+                        TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.blue),
+                          ),
+                          onPressed: onSelectMemberNhuaButton,
+                          child: Text('Select members'),
+                        ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            // color: Color.fromARGB(255, 255, 182, 79),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Container(
+                            height: 30,
+                            child: NyTextField(
+                              controller: nhua1,
+                              enabled: false,
+                              dummyData:
+                                  getPlayerNameByOrder(widget.nnMatch.nhua, 1),
+                              style: GoogleFonts.workSans(
+                                textStyle: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        NyTextField(
+                          controller: nhua2,
+                          enabled: false,
+                          dummyData:
+                              getPlayerNameByOrder(widget.nnMatch.nhua, 2),
+                          style: GoogleFonts.workSans(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ],

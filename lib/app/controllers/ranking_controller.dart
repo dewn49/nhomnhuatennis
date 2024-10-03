@@ -102,31 +102,35 @@ class RankingController extends Controller {
     for (var member in listMember) {
       memberId = member.id;
       member.stats = [0, 0, 0, 0, 0];
-      print('Các trận đấu của memberid: ' + memberId.toString());
-      final matchInMonth = await Supabase.instance.client
-          .from('nn_match')
-          .select('*')
-          .gte('finished_at', from)
-          .lte('finished_at', to)
-          .or('nhom1.eq.${memberId}, nhom2.eq.${memberId},nhua1.eq.${memberId}, nhua2.eq.${memberId}')
-          .order('id', ascending: true);
+      if (memberId! >= 34 && memberId <= 37)
+        member.stats = [-100, -100, -100, -100, -100];
+      else {
+        print('Các trận đấu của memberid: ' + memberId.toString());
+        final matchInMonth = await Supabase.instance.client
+            .from('nn_match')
+            .select('*')
+            .gte('finished_at', from)
+            .lte('finished_at', to)
+            .or('nhom1.eq.${memberId}, nhom2.eq.${memberId},nhua1.eq.${memberId}, nhua2.eq.${memberId}')
+            .order('id', ascending: true);
 
-      memberMatchStat.clear();
-      for (var d in matchInMonth) {
-        print(d);
-        NNMatch match = NNMatch.fromJson(d);
-        updatePlayerStatsWithTeam(
-            match, match.getNhom()!, 'player1', match.getNhua()!);
-        updatePlayerStatsWithTeam(
-            match, match.getNhom()!, 'player2', match.getNhua()!);
-        updatePlayerStatsWithTeam(
-            match, match.getNhua()!, 'player1', match.getNhom()!);
-        updatePlayerStatsWithTeam(
-            match, match.getNhua()!, 'player2', match.getNhom()!);
+        memberMatchStat.clear();
+        for (var d in matchInMonth) {
+          print(d);
+          NNMatch match = NNMatch.fromJson(d);
+          updatePlayerStatsWithTeam(
+              match, match.getNhom()!, 'player1', match.getNhua()!);
+          updatePlayerStatsWithTeam(
+              match, match.getNhom()!, 'player2', match.getNhua()!);
+          updatePlayerStatsWithTeam(
+              match, match.getNhua()!, 'player1', match.getNhom()!);
+          updatePlayerStatsWithTeam(
+              match, match.getNhua()!, 'player2', match.getNhom()!);
+        }
+        if (memberMatchStat.length != 0)
+          member.stats = memberMatchStat[memberId]!;
+        print('/////////////////////////');
       }
-      if (memberMatchStat.length != 0)
-        member.stats = memberMatchStat[memberId]!;
-      print('/////////////////////////');
     }
 
     //sort

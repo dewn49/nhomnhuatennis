@@ -233,105 +233,107 @@ class _MatchPageState extends NyState<MatchPage>
                             //   ),
                             child: Column(
                               children: [
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.vertical,
+                                Expanded(
                                   child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: DataTable(
-                                        columnSpacing: 12.0,
-                                        columns: <DataColumn>[
-                                          DataColumn(
-                                              label: Text(
-                                            "STT".toUpperCase(),
-                                            style: TextStyle(
+                                    scrollDirection: Axis.vertical,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: DataTable(
+                                          columnSpacing: 12.0,
+                                          columns: <DataColumn>[
+                                            DataColumn(
+                                                label: Text(
+                                              "STT".toUpperCase(),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                            DataColumn(
+                                                label: Text(
+                                              "Thành viên".toUpperCase(),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                            DataColumn(
+                                                label: Text(
+                                              "THAG".toUpperCase(),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                            DataColumn(
+                                                label: Text(
+                                              "HÒA".toUpperCase(),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                            DataColumn(
+                                                label: Text(
+                                              "THUA".toUpperCase(),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                            DataColumn(
+                                                label: Text(
+                                              "Games".toUpperCase(),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                            DataColumn(
+                                                label: Text(
+                                              "ĐIỂM".toUpperCase(),
+                                              style: TextStyle(
                                                 fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                          DataColumn(
-                                              label: Text(
-                                            "Thành viên".toUpperCase(),
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                          DataColumn(
-                                              label: Text(
-                                            "THAG".toUpperCase(),
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                          DataColumn(
-                                              label: Text(
-                                            "HÒA".toUpperCase(),
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                          DataColumn(
-                                              label: Text(
-                                            "THUA".toUpperCase(),
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                          DataColumn(
-                                              label: Text(
-                                            "Games".toUpperCase(),
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                          DataColumn(
-                                              label: Text(
-                                            "ĐIỂM".toUpperCase(),
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                              backgroundColor: Color.fromARGB(
-                                                  255, 0, 119, 255),
-                                              // fontSize: 20,
-                                            ),
-                                          )),
-                                        ],
-                                        rows: nnMatchStat.entries
-                                            .map<DataRow>((entry) {
-                                          countStat = countStat + 1;
-                                          return DataRow(
-                                            cells: [
-                                              DataCell(
-                                                  Text(countStat.toString())),
-                                              DataCell(Text(
-                                                  mapMemberId[entry.key]!)),
-                                              DataCell(Text(entry
-                                                  .value[NN_STAT_WIN]
-                                                  .toString())),
-                                              DataCell(Text(entry
-                                                  .value[NN_STAT_TIE]
-                                                  .toString())),
-                                              DataCell(Text(entry
-                                                  .value[NN_STAT_LOS]
-                                                  .toString())),
-                                              DataCell(Text(entry
-                                                  .value[NN_STAT_DEU]
-                                                  .toString())),
-                                              DataCell(Text(entry
-                                                  .value[NN_STAT_POINT]
-                                                  .toString()))
-                                            ],
-                                          );
-                                        }).toList()),
-                                    // child: TableView.builder(
-                                    //   columnCount: 7,
-                                    //   rowCount: nnMatchStat.length + 1,
-                                    //   columnBuilder: buildTableSpanColumn,
-                                    //   rowBuilder: buildTableSpanRow,
-                                    //   cellBuilder:
-                                    //       (BuildContext context, TableVicinity vicinity) {
-                                    //     return TableViewCell(
-                                    //         child: Center(child: addText(vicinity)));
-                                    //   },
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                                backgroundColor: Color.fromARGB(
+                                                    255, 0, 119, 255),
+                                                // fontSize: 20,
+                                              ),
+                                            )),
+                                          ],
+                                          rows: nnMatchStat.entries
+                                              .map<DataRow>((entry) {
+                                            countStat = countStat + 1;
+                                            return DataRow(
+                                              cells: [
+                                                DataCell(
+                                                    Text(countStat.toString())),
+                                                DataCell(Text(
+                                                    mapMemberId[entry.key]!)),
+                                                DataCell(Text(entry
+                                                    .value[NN_STAT_WIN]
+                                                    .toString())),
+                                                DataCell(Text(entry
+                                                    .value[NN_STAT_TIE]
+                                                    .toString())),
+                                                DataCell(Text(entry
+                                                    .value[NN_STAT_LOS]
+                                                    .toString())),
+                                                DataCell(Text(entry
+                                                    .value[NN_STAT_DEU]
+                                                    .toString())),
+                                                DataCell(Text(entry
+                                                    .value[NN_STAT_POINT]
+                                                    .toString()))
+                                              ],
+                                            );
+                                          }).toList()),
+                                      // child: TableView.builder(
+                                      //   columnCount: 7,
+                                      //   rowCount: nnMatchStat.length + 1,
+                                      //   columnBuilder: buildTableSpanColumn,
+                                      //   rowBuilder: buildTableSpanRow,
+                                      //   cellBuilder:
+                                      //       (BuildContext context, TableVicinity vicinity) {
+                                      //     return TableViewCell(
+                                      //         child: Center(child: addText(vicinity)));
+                                      //   },
+                                    ),
                                   ),
                                 ),
                               ],
