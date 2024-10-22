@@ -33,6 +33,20 @@ class MatchViewController extends Controller {
         print('ADD++Response:  + $response');
         nnMatch.id = int.parse(response[0]['id'].toString());
         // listMatch.add(NNMatch.fromJson(nnMatch.toJson()));
+
+        // TODO: stupid
+        // Update create_at to selected date
+        final responseUpdate = await Supabase.instance.client
+            .from('nn_match')
+            .update({'created_at': selectedDate.toString()})
+            .eq('id', nnMatch.id as Object)
+            .select();
+        if (responseUpdate.isNotEmpty) {
+          print('ADD++Update create_at OK:');
+        } else {
+          print('ADD++Update create_at FAILED:');
+        }
+
         return nnMatch;
       } else {
         print('ADD++Unexpected response: $response');
