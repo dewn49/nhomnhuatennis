@@ -48,3 +48,7 @@ NNTV is simple tennis club management application (For fun :))). Some features a
  * Update match info
 
 ![ranking](./public/screenshot/2024-09-18_151738.jpg)
+
+## BUILD
+
+ * Web: flutter build web --base-href=/nhomnhuatennis/ --no-tree-shake-icons

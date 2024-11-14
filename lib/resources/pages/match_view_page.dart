@@ -45,6 +45,7 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
     '4',
     '5',
     '6',
+    '7',
   ];
 
   String? getPlayerNameByOrder(Map<dynamic, dynamic> team, int oder) {
@@ -520,24 +521,32 @@ class _MatchViewPageState extends NyState<MatchViewPage> {
                     selectedPlayers.forEach((member, isChecked) {
                       if (isNhom) {
                         if (isChecked && count == 0) {
-                          nhom1.text = member.name!;
-                          // nhom1 = member.name!;
-                          // print('Nhom1: ' + nhom1);
                           count = 1;
+                          nhom1.text = member.name!;
                           widget.nnMatch.nhom['player1'] = mapMemberId.keys
                               .firstWhere((k) => mapMemberId[k] == member.name);
+                          //Init data for single match
+                          nhom2.text = member.name!;
+                          widget.nnMatch.nhom['player2'] = mapMemberId.keys
+                              .firstWhere((k) => mapMemberId[k] == member.name);
                         } else if (isChecked && count == 1) {
+                          count = 2;
                           nhom2.text = member.name!;
                           widget.nnMatch.nhom['player2'] = mapMemberId.keys
                               .firstWhere((k) => mapMemberId[k] == member.name);
                         }
                       } else {
                         if (isChecked && count == 0) {
-                          nhua1.text = member.name!;
                           count = 1;
+                          nhua1.text = member.name!;
                           widget.nnMatch.nhua['player1'] = mapMemberId.keys
                               .firstWhere((k) => mapMemberId[k] == member.name);
+                          //Init data for single match
+                          nhua2.text = member.name!;
+                          widget.nnMatch.nhua['player2'] = mapMemberId.keys
+                              .firstWhere((k) => mapMemberId[k] == member.name);
                         } else if (isChecked && count == 1) {
+                          count = 2;
                           nhua2.text = member.name!;
                           widget.nnMatch.nhua['player2'] = mapMemberId.keys
                               .firstWhere((k) => mapMemberId[k] == member.name);
